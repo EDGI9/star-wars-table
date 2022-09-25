@@ -1,0 +1,27 @@
+.u-flex {
+  display: flex;
+}
+.u-flex-row {
+  flex-direction: row;
+}
+.u-flex-column {
+  flex-direction: column;
+}
+.u-flex-align-start {
+  align-items: flex-start;
+}
+.u-flex-align-center {
+  align-items: center;
+}
+.u-flex-align-end {
+  align-items: flex-end;
+}
+.u-flex-justify-start {
+  justify-content: flex-start;
+}
+.u-flex-justify-center {
+  justify-content: center;
+}
+.u-flex-justify-end {
+  justify-content: flex-end;
+}

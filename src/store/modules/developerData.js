@@ -1,11 +1,11 @@
 export default {
   namespaced: true,
   state() {
-    return{
+    return {
       name: "Edgar Dias",
       projectDate: 2020,
-      webside:"https://edgar-dias.eu"
-    }
+      webside: "https://edgar-dias.eu"
+    };
   },
   getters: {
     DEVELOPER_NAME(state) {

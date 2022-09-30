@@ -1,17 +1,17 @@
 import Axios from "axios";
-import Api from "@api"
-import moment from "moment"
+import Api from "@api";
+import moment from "moment";
 
 export default {
   namespaced: true,
   state() {
     return {
       personListTable: {
-        columns:[],
-        rows:[]
+        columns: [],
+        rows: []
       },
       selectedPlanet: {}
-    }
+    };
   },
   mutations: {
     UPDATE_PERSON_LIST(state, payload) {
@@ -20,14 +20,20 @@ export default {
     },
     UPDATE_SELECTED_PLANET(state, payload) {
       state.selectedPlanet = payload;
-    },
+    }
   },
   actions: {
     GET_PERSON_LIST({ commit }) {
-      Axios
-        .get(Api.starWars.getPeople)
+      Axios.get(Api.starWars.getPeople)
         .then(response => {
-          const columns = ["name", "height", "mass", "created", "edited", "homeworld" ];
+          const columns = [
+            "name",
+            "height",
+            "mass",
+            "created",
+            "edited",
+            "homeworld"
+          ];
           const filteredData = response.data.results.map(row => {
             const filteredRows = Object.keys(row)
               .filter(key => columns.includes(key))
@@ -35,41 +41,40 @@ export default {
                 switch (key) {
                   case "created":
                   case "edited":
-                    obj[key] = moment(row[key]).format('MM/DD/YYYY, h:mm:ss a');
+                    obj[key] = moment(row[key]).format("MM/DD/YYYY, h:mm:ss a");
                     break;
                   default:
-                    obj[key] = row[key]
+                    obj[key] = row[key];
                     break;
                 }
                 return obj;
               }, {});
-              return filteredRows
+            return filteredRows;
           });
 
           const table = {
-            columns:Object.keys(filteredData[0]),
-            rows: filteredData.map(element => Object.values(element)) 
-          }
+            columns: Object.keys(filteredData[0]),
+            rows: filteredData.map(element => Object.values(element))
+          };
 
           commit("UPDATE_PERSON_LIST", table);
         })
         .catch(error => {
-            console.log(error)
-        })
+          console.log(error);
+        });
     },
     GET_PLANET_DATA({ commit }, url) {
-      Axios
-        .get(url)
+      Axios.get(url)
         .then(response => {
           commit("UPDATE_SELECTED_PLANET", response.data);
         })
         .catch(error => {
-            console.log(error)
-        })
+          console.log(error);
+        });
     },
     UPDATE_SELECTED_PLANET({ commit }, payload) {
       commit("UPDATE_SELECTED_PLANET", payload);
-    },
+    }
   },
   getters: {
     PERSON_LIST(state) {

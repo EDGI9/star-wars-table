@@ -1,4 +1,4 @@
-import camelCase from 'lodash/camelCase';
+import camelCase from "lodash/camelCase";
 
 const modules = {};
 const indexFileName = "./index.js";
@@ -7,15 +7,13 @@ const indexFileName = "./index.js";
 const requireModule = require.context(".", false, /\.js$/);
 
 requireModule.keys().forEach(fileName => {
+  //reject the index.js file
+  if (fileName === indexFileName) {
+    return;
+  }
 
-    //reject the index.js file
-    if (fileName === indexFileName) {
-        return;
-    }
-
-    const modulesName = camelCase(fileName.replace(/(\.\/|\.js)/g, ""));
-    modules[modulesName] = requireModule(fileName).default;
-
+  const modulesName = camelCase(fileName.replace(/(\.\/|\.js)/g, ""));
+  modules[modulesName] = requireModule(fileName).default;
 });
 
 export default modules;

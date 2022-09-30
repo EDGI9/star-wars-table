@@ -1,6 +1,9 @@
 # Star-wars-table
 An app that connects to an open source Star Wars API and fetch data relevant to the Star Wars universe
 
+# Demo
+[Star Wars Table](https://edgi9.github.io/star-wars-table/)
+
 ## Project setup
 ```
 npm install

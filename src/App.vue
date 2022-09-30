@@ -21,7 +21,7 @@
 
     <my-footer class="u-flex u-flex-row u-flex-justify-center">
       <a target="_blank" :href="DEVELOPER_WEBSITE"> 
-        <p>&copy; {{DEVELOPER_NAME}} - {{PROJECT_DATE}}</p> 
+        <p>&copy; {{DEVELOPER_NAME}} - {{PROJECT_DATE}}</p> .
       </a>
     </my-footer>
   </div>
